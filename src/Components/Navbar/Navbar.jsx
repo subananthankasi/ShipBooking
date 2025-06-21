@@ -40,7 +40,7 @@ const Navbar = () => {
                     sx={{ fontSize: 18, color: "#ff681a" }}
                   />
                 </div>
-                <p className="header-mail m-0">+97152564429</p>
+                <p className="header-mail m-0">+97152564209</p>
               </div>
             </div>
           </div>
@@ -75,10 +75,23 @@ const Navbar = () => {
                 <Link to="#" className="menu-item">
                   Home
                 </Link>
-                <Link to="#" className="menu-item">
+               
+                <Link to="/" className="menu-item">
+                  Yacht Rental
+                </Link>
+                <Link to="/" className="menu-item">
+                  Yacht Booking
+                </Link>
+                <Link to="/" className="menu-item">
+                  Luxury Yachts
+                </Link>
+                <Link to="/" className="menu-item">
+                  Standard Yachts
+                </Link>
+                 <Link to="#" className="menu-item">
                   About Us
                 </Link>
-                <Link to="/contact" className="menu-item">
+                <Link to="/" className="menu-item">
                   Contact
                 </Link>
               </div>
@@ -103,10 +116,30 @@ const Navbar = () => {
         }`}
       >
         <div className="mobile-menu">
-          <ul>
+          <ul className="text-start">
             <li>
               <Link to="/" onClick={() => setMenuOpen(false)}>
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Yacht Rental
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                 Yacht Booking
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                   Luxury Yachts
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Standard Yachts
               </Link>
             </li>
             <li>
@@ -116,7 +149,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/" onClick={() => setMenuOpen(false)}>
-                Contact
+                Contact Us
               </Link>
             </li>
           </ul>
