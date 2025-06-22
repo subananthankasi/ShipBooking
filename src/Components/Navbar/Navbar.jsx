@@ -1,86 +1,158 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../src/Assets/logo.png";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import EmailIcon from '@mui/icons-material/Email';
-import CallIcon from '@mui/icons-material/Call';
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import EmailIcon from "@mui/icons-material/Email";
+import CallIcon from "@mui/icons-material/Call";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import facebook from "../../../src/Assets/facebook-svgrepo-com.svg";
+import Instagram from "../../../src/Assets/instagram-1-svgrepo-com.svg";
+import whatsapp from "../../../src/Assets/whatsapp-icon-logo-svgrepo-com.svg";
+import twiter from "../../../src/Assets/twitter-svgrepo-com.svg";
+
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="vs-header header-layout1">
-      <div className="container">
-        <div className="header-top">
-          <div className="row justify-content-between align-items-center">
-            <div className="col d-none d-lg-block text-start p-1">
-              <ul className="header-contact">
-                <li>
-                  <i className="fas fa-phone-alt"><EmailIcon/> </i>
-                  <a href="mailto:titanyachtsofficial@gmail.com">titanyachtsofficial@gmail.com</a>
-                </li>
-                <li>
-                  <i className="fas fa-phone-alt"><CallIcon/>  </i>
-                  <a href="tel:+97152564429">+97152564429</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-auto">
-              <div className="header-social">
-                <a href="#"><FacebookIcon/></a>
-                <a href="#"><InstagramIcon/></a>
-                <a href="#"><WhatsAppIcon/></a>
-                <a href="#"><TwitterIcon/></a>
-               
+    <header className="">
+      <div className="header1">
+        <div className="row justify-content-between align-items-center mx-5">
+          <div className="col d-none d-lg-block text-start p-1 ">
+            <div className="d-flex gap-3">
+              <div className="d-flex gap-2">
+                <div className="header-call">
+                  <EmailIcon
+                    className="header-icon"
+                    sx={{ fontSize: 18, color: "#ff681a" }}
+                  />
+                </div>
+                <p className="header-mail m-0">titanyachtsofficial@gmail.com</p>
               </div>
+              <div className="d-flex gap-2 header-left">
+                <div className="header-call">
+                  <CallIcon
+                    className="header-icon"
+                    sx={{ fontSize: 18, color: "#ff681a" }}
+                  />
+                </div>
+                <p className="header-mail m-0">+97152564209</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-auto col d-none d-lg-block">
+            <div className="d-flex gap-3">
+              <FacebookIcon className="facebook_icon" sx={{ fontSize: 21 }} />
+              <InstagramIcon className="insta_icon" sx={{ fontSize: 21 }} />
+              <WhatsAppIcon className="whatsapp_icon" sx={{ fontSize: 21 }} />
+              <TwitterIcon className="twitter_icon" sx={{ fontSize: 21 }} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="sticky-wrapper">
-        <div className="sticky-active">
-          <div className="container position-relative z-index-common">
-            <div className="row align-items-center justify-content-between">
-              <div className="col-auto">
-                <div className="vs-logo">
-                  <Link to="/">
-                    <img src={logo} alt="logo" style={{ width: "150px", height: "120px" }} />
-                  </Link>
-                </div>
-              </div>
-
-              <div className="col text-end text-xl-center">
-                <nav className="main-menu menu-style1 d-none d-lg-block">
-                  <ul>
-                    <li className="menu-item-has-children">
-                      <Link to="#">Home</Link>
-                      <ul className="sub-menu">
-                        <li><Link to="/">Home One</Link></li>
-                        <li><Link to="/home2">Home Two</Link></li>
-                        <li><Link to="/home3">Home Three</Link></li>
-                        <li><Link to="/home4">Home Four</Link></li>
-                        <li><Link to="/home5">Home Five</Link></li>
-                        <li><Link to="/home6">Home Six</Link></li>
-                      </ul>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <Link to="#">About Us</Link>
-                      <ul className="sub-menu">
-                        <li><Link to="/destinations">Destinations</Link></li>
-                        <li><Link to="/destination-details">Destination Details</Link></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <Link to="/contact">Contact</Link>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-
+      <div className="header2">
+        <div className="row align-items-center justify-content-between mx-5">
+          <div className="col-auto">
+            <div className="vs-logo">
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="logo"
+                  style={{ width: "100px", height: "80px" }}
+                />
+              </Link>
             </div>
           </div>
+
+          <div className="col text-end text-xl-center d-none d-lg-block">
+            <nav className="main-menu menu-style1">
+              <div className="d-flex justify-content-center align-items-center gap-4">
+                <Link to="#" className="menu-item">
+                  Home
+                </Link>
+               
+                <Link to="/" className="menu-item">
+                  Yacht Rental
+                </Link>
+                <Link to="/" className="menu-item">
+                  Yacht Booking
+                </Link>
+                <Link to="/" className="menu-item">
+                  Luxury Yachts
+                </Link>
+                <Link to="/" className="menu-item">
+                  Standard Yachts
+                </Link>
+                 <Link to="#" className="menu-item">
+                  About Us
+                </Link>
+                <Link to="/" className="menu-item">
+                  Contact
+                </Link>
+              </div>
+            </nav>
+          </div>
+
+          <div className="col-auto d-lg-none">
+            <button
+              className="menu-toggle-btn"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`mobile-menu-container d-lg-none ${
+          menuOpen ? "open" : "closed"
+        }`}
+      >
+        <div className="mobile-menu">
+          <ul className="text-start">
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Yacht Rental
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                 Yacht Booking
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                   Luxury Yachts
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Standard Yachts
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Contact Us
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
