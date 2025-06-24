@@ -4,6 +4,7 @@ import homepagepic from "../../Assets/HomePic.jpg";
 import banner from "../../Assets/banner-bg-1.png";
 import "./HomePage.css";
 import GridPage from "../GridPages/GridPage";
+import Footer from "../../Components/Footer/Footer";
 const HomePage = () => {
   return (
     <>
@@ -70,6 +71,7 @@ const HomePage = () => {
         </div>
       </section>
       <GridPage/>
+      <Footer/>
     </>
   );
 };

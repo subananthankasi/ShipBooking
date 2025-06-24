@@ -1,0 +1,6 @@
+footer ul li a:hover {
+  text-decoration: underline;
+}
+.footer_text :hover {
+   color: rgb(255, 102, 25);
+}
