@@ -46,9 +46,48 @@ const Navbar = () => {
           </div>
           <div className="col-auto col d-none d-lg-block">
             <div className="d-flex gap-3">
-              <FacebookIcon className="facebook_icon" sx={{ fontSize: 21 }} />
-              <InstagramIcon className="insta_icon" sx={{ fontSize: 21 }} />
-              <WhatsAppIcon className="whatsapp_icon" sx={{ fontSize: 21 }} />
+              <a
+                href="https://www.facebook.com/titanyachtsofficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="facebook_icon"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FacebookIcon sx={{ fontSize: 21 }} />
+              </a>
+              {/* <FacebookIcon className="facebook_icon" sx={{ fontSize: 21 }} /> */}
+              {/* <InstagramIcon className="insta_icon" sx={{ fontSize: 21 }} /> */}
+              <a
+                href="https://instagram.com/titan_yachts_official"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="insta_icon"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <InstagramIcon sx={{ fontSize: 21 }} />
+              </a>
+              {/* <WhatsAppIcon className="whatsapp_icon" sx={{ fontSize: 21 }} /> */}
+              <a
+                href="https://wa.me/+971525644209"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp_icon"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <WhatsAppIcon sx={{ fontSize: 21 }} />
+              </a>
               <TwitterIcon className="twitter_icon" sx={{ fontSize: 21 }} />
             </div>
           </div>
@@ -75,7 +114,7 @@ const Navbar = () => {
                 <Link to="#" className="menu-item">
                   Home
                 </Link>
-               
+
                 <Link to="/" className="menu-item">
                   Yacht Rental
                 </Link>
@@ -88,7 +127,7 @@ const Navbar = () => {
                 <Link to="/" className="menu-item">
                   Standard Yachts
                 </Link>
-                 <Link to="#" className="menu-item">
+                <Link to="#" className="menu-item">
                   About Us
                 </Link>
                 <Link to="/" className="menu-item">
@@ -129,12 +168,12 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/" onClick={() => setMenuOpen(false)}>
-                 Yacht Booking
+                Yacht Booking
               </Link>
             </li>
             <li>
               <Link to="/" onClick={() => setMenuOpen(false)}>
-                   Luxury Yachts
+                Luxury Yachts
               </Link>
             </li>
             <li>

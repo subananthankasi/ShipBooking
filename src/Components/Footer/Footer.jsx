@@ -64,9 +64,23 @@ const Footer = () => {
               Email: titanyachtsofficial@gmail.com
             </p>
             <div className="d-flex gap-3 justify-content-center">
-              <FacebookIcon className="facebook_icon" sx={{ fontSize: 21 }} />
-              <InstagramIcon className="insta_icon" sx={{ fontSize: 21 }} />
-              <WhatsAppIcon className="whatsapp_icon" sx={{ fontSize: 21 }} />
+              <FacebookIcon
+                className="facebook_icon"
+                sx={{ fontSize: 21 }}
+                onClick={() =>
+                  window.open("https://www.facebook.com/titanyachtsofficial", "_blank")
+                }
+              />
+              <InstagramIcon
+                className="insta_icon"
+                sx={{ fontSize: 21 }}
+                onClick={() =>
+                  window.open(" https://instagram.com/titan_yachts_official", "_blank")
+                }
+              />
+              <WhatsAppIcon className="whatsapp_icon" sx={{ fontSize: 21 }}  onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }/>
               <TwitterIcon className="twitter_icon" sx={{ fontSize: 21 }} />
             </div>
           </div>

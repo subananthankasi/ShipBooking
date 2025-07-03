@@ -1,35 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Grid.css";
-import Gulf_1 from "../../Assets/GridImg/Gulfcraft/Gulfcraft1.png";
-import Gulf_2 from "../../Assets/GridImg/Gulfcraft/Gulfcraft2.jpeg";
-import Gulf_3 from "../../Assets/GridImg/Gulfcraft/Gulfcraft3.jpeg";
-import Gulf_4 from "../../Assets/GridImg/Gulfcraft/Gulfcraft4.jpeg";
-import Gulf_5 from "../../Assets/GridImg/Gulfcraft/Gulfcraft5.jpeg";
-import Gulf_6 from "../../Assets/GridImg/Gulfcraft/Gulfcraft6.jpeg";
-import Gulf_7 from "../../Assets/GridImg/Gulfcraft/Gulfcraft7.jpeg";
-import Gulf_8 from "../../Assets/GridImg/Gulfcraft/Gulfcraft8.jpeg";
-import Gulf_9 from "../../Assets/GridImg/Gulfcraft/Gulfcraft9.jpeg";
-import Gulf_10 from "../../Assets/GridImg/Gulfcraft/Gulfcraft10.jpeg";
-import Gulf_11 from "../../Assets/GridImg/Gulfcraft/Gulfcraft11.jpeg";
-import Gulf_12 from "../../Assets/GridImg/Gulfcraft/Gulfcraft12.jpeg";
-import Gulf_13 from "../../Assets/GridImg/Gulfcraft/Gulfcraft13.jpeg";
-import Mejesty_50_1 from "../../Assets/GridImg/Mejesty_50/Mejesty_50_1.jpeg";
-import Mejesty_70_1 from "../../Assets/GridImg/Mejesty_70/Mejasty_70_1.jpeg";
-import Azimut_1 from "../../Assets/GridImg/Azimut/Azimut_1.jpeg";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import PartyPages from "./PartyPages";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import banner_Img from "../../Assets/GridImg/panorama-dubai-marina-sunset-600nw-687119689 .jpeg";
+import { Carousel } from "react-responsive-carousel";
+import { Dialog } from "primereact/dialog";
+import { useNavigate } from "react-router-dom";
+
+const AzimuthImages = require
+  .context("../../Assets/GridImg/Azimut", false, /\.(jpe?g|png)$/)
+  .keys()
+  .map((key) =>
+    require(`../../Assets/GridImg/Azimut/${key.replace("./", "")}`)
+  );
+
+const GulfImages = require
+  .context("../../Assets/GridImg/Gulfcraft", false, /\.(jpe?g|png)$/)
+  .keys()
+  .map((key) =>
+    require(`../../Assets/GridImg/Gulfcraft/${key.replace("./", "")}`)
+  );
+
+const MajestyImages = require
+  .context("../../Assets/GridImg/Mejesty_70", false, /\.(jpe?g|png)$/)
+  .keys()
+  .map((key) =>
+    require(`../../Assets/GridImg/Mejesty_70/${key.replace("./", "")}`)
+  );
+
+const MeridianImages = require
+  .context("../../Assets/GridImg/Meridian_45", false, /\.(jpe?g|png)$/)
+  .keys()
+  .map((key) =>
+    require(`../../Assets/GridImg/Meridian_45/${key.replace("./", "")}`)
+  );
+
+const CranchiImages = require
+  .context("../../Assets/GridImg/Cranchi", false, /\.(jpe?g|png)$/)
+  .keys()
+  .map((key) =>
+    require(`../../Assets/GridImg/Cranchi/${key.replace("./", "")}`)
+  );
+
+const RivieraImages = require
+  .context("../../Assets/GridImg/Riviera", false, /\.(jpe?g|png)$/)
+  .keys()
+  .map((key) =>
+    require(`../../Assets/GridImg/Riviera/${key.replace("./", "")}`)
+  );
 
 const GridPage = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
-      duration: 500, // animation duration
-      // only animate once
+      duration: 500,
     });
   }, []);
+
+  const [selectedGallery, setSelectedGallery] = useState(null);
+
+  const isOpen = selectedGallery !== null;
+  const images =
+    selectedGallery === "gulf"
+      ? GulfImages
+      : selectedGallery === "majesty"
+      ? MajestyImages
+      : selectedGallery === "azimuth"
+      ? AzimuthImages
+      : selectedGallery === "meridian"
+      ? MeridianImages
+      : selectedGallery === "cranchi"
+      ? CranchiImages
+      : selectedGallery === "riviera"
+      ? RivieraImages
+      : [];
+
+  const header =
+    selectedGallery === "gulf"
+      ? "GulfCraft"
+      : selectedGallery === "majesty"
+      ? "Majesty 70"
+      : selectedGallery === "azimuth"
+      ? "Azimuth"
+      : selectedGallery === "meridian"
+      ? "Meridian"
+      : selectedGallery === "cranchi"
+      ? "Cranchi"
+      : selectedGallery === "riviera"
+      ? "Riviera"
+      : "";
 
   return (
     <>
@@ -37,29 +99,56 @@ const GridPage = () => {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
           <div className="col " data-aos="zoom-in-right">
             <div className="card p-0">
-              <img
-                src={Gulf_2}
-                alt=""
-                style={{ height: "250px", width: "100%", objectFit: "" }}
-              />
+              <div
+                className="p-3"
+                onClick={() => setSelectedGallery("gulf")}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={GulfImages[0]}
+                  alt=""
+                  style={{ height: "230px", width: "100%", objectFit: "" }}
+                />
+              </div>
+
               <div style={{ backgroundColor: "#f9f2eb" }}>
                 <div className="row align-items-center px-3 mt-2 mb-2">
                   <div className="col-6">
-                    <h5 className="text-center card-title ">Gulfcraft 2</h5>
+                    <h5 className="text-center card-title ">Gulfcraft </h5>
                   </div>
 
                   <div className="col-6 d-flex justify-content-end gap-2">
-                    <button className="booking_btn">
+                    {/* <button className="booking_btn">
                       <WhatsAppIcon />{" "}
+                    </button> */}
+                    <a
+                      href="https://wa.me/+971525644209"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="booking_btn"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <button
+                      className="booking_btn"
+                      onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }
+                    >
+                      Book Now
                     </button>
-                    <button className="booking_btn">Book Now</button>
                   </div>
                 </div>
                 <hr className="p-0 m-0" />
                 <div className="row m-0 p-0">
                   <div className="col-4 p-0 m-0">
                     <p className="p-0 m-0 content_name">Length</p>
-                    <p className="fw-bold p-0 m-0">55 FT</p>
+                    <p className="fw-bold p-0 m-0">60 FT</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
@@ -69,14 +158,14 @@ const GridPage = () => {
                     }}
                   >
                     <p className="p-0 m-0 content_name">Capacity</p>
-                    <p className="fw-bold p-0 m-0">55 PAX</p>
+                    <p className="fw-bold p-0 m-0">22 PAX</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
                     style={{ borderLeft: "1px solid #ccc" }}
                   >
                     <p className="p-0 m-0 content_name">Price</p>
-                    <p className="fw-bold p-0 m-0">55 AED</p>
+                    <p className="fw-bold p-0 m-0">550 Per Hour</p>
                   </div>
                 </div>
               </div>
@@ -84,29 +173,55 @@ const GridPage = () => {
           </div>
           <div className="col " data-aos="zoom-in-up">
             <div className="card p-0">
-              <img
-                src={Mejesty_70_1}
-                alt=""
-                style={{ height: "250px", width: "100%", objectFit: "" }}
-              />
+              <div
+                className="p-3"
+                onClick={() => setSelectedGallery("majesty")}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={MajestyImages[0]}
+                  alt=""
+                  style={{ height: "230px", width: "100%", objectFit: "" }}
+                />
+              </div>
               <div style={{ backgroundColor: "#f9f2eb" }}>
                 <div className="row align-items-center px-3 mt-2 mb-2">
                   <div className="col-6">
-                    <h5 className="text-center card-title ">Gulfcraft 2</h5>
+                    <h5 className="text-center card-title ">Majesty</h5>
                   </div>
 
                   <div className="col-6 d-flex justify-content-end gap-2">
-                    <button className="booking_btn">
+                    {/* <button className="booking_btn">
                       <WhatsAppIcon />{" "}
+                    </button> */}
+                    <a
+                      href="https://wa.me/+971525644209"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="booking_btn"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <button
+                      className="booking_btn"
+                      onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }
+                    >
+                      Book Now
                     </button>
-                    <button className="booking_btn">Book Now</button>
                   </div>
                 </div>
                 <hr className="p-0 m-0" />
                 <div className="row m-0 p-0">
                   <div className="col-4 p-0 m-0">
                     <p className="p-0 m-0 content_name">Length</p>
-                    <p className="fw-bold p-0 m-0">55 FT</p>
+                    <p className="fw-bold p-0 m-0">70 FT</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
@@ -116,14 +231,14 @@ const GridPage = () => {
                     }}
                   >
                     <p className="p-0 m-0 content_name">Capacity</p>
-                    <p className="fw-bold p-0 m-0">55 PAX</p>
+                    <p className="fw-bold p-0 m-0">35 PAX</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
                     style={{ borderLeft: "1px solid #ccc" }}
                   >
                     <p className="p-0 m-0 content_name">Price</p>
-                    <p className="fw-bold p-0 m-0">55 AED</p>
+                    <p className="fw-bold p-0 m-0">700 per Hour</p>
                   </div>
                 </div>
               </div>
@@ -131,29 +246,55 @@ const GridPage = () => {
           </div>
           <div className="col" data-aos="zoom-in-left">
             <div className="card p-0">
-              <img
-                src={Azimut_1}
-                alt=""
-                style={{ height: "250px", width: "100%", objectFit: "" }}
-              />
+              <div
+                className="p-3"
+                onClick={() => setSelectedGallery("azimuth")}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={AzimuthImages?.[0]}
+                  alt=""
+                  style={{ height: "230px", width: "100%", objectFit: "" }}
+                />
+              </div>
               <div style={{ backgroundColor: "#f9f2eb" }}>
                 <div className="row align-items-center px-3 mt-2 mb-2">
                   <div className="col-6">
-                    <h5 className="text-center card-title ">Gulfcraft 2</h5>
+                    <h5 className="text-center card-title ">Azimuth</h5>
                   </div>
 
                   <div className="col-6 d-flex justify-content-end gap-2">
-                    <button className="booking_btn">
+                    {/* <button className="booking_btn">
                       <WhatsAppIcon />{" "}
+                    </button> */}
+                    <a
+                      href="https://wa.me/+971525644209"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="booking_btn"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <button
+                      className="booking_btn"
+                      onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }
+                    >
+                      Book Now
                     </button>
-                    <button className="booking_btn">Book Now</button>
                   </div>
                 </div>
                 <hr className="p-0 m-0" />
                 <div className="row m-0 p-0">
                   <div className="col-4 p-0 m-0">
                     <p className="p-0 m-0 content_name">Length</p>
-                    <p className="fw-bold p-0 m-0">55 FT</p>
+                    <p className="fw-bold p-0 m-0">80 FT</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
@@ -163,14 +304,14 @@ const GridPage = () => {
                     }}
                   >
                     <p className="p-0 m-0 content_name">Capacity</p>
-                    <p className="fw-bold p-0 m-0">55 PAX</p>
+                    <p className="fw-bold p-0 m-0">40 PAX</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
                     style={{ borderLeft: "1px solid #ccc" }}
                   >
                     <p className="p-0 m-0 content_name">Price</p>
-                    <p className="fw-bold p-0 m-0">55 AED</p>
+                    <p className="fw-bold p-0 m-0">900 Per Hour</p>
                   </div>
                 </div>
               </div>
@@ -178,29 +319,55 @@ const GridPage = () => {
           </div>
           <div className="col" data-aos="zoom-in-right">
             <div className="card p-0">
-              <img
-                src={Azimut_1}
-                alt=""
-                style={{ height: "250px", width: "100%", objectFit: "" }}
-              />
+              <div
+                className="p-3"
+                onClick={() => setSelectedGallery("meridian")}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={MeridianImages?.[1]}
+                  alt=""
+                  style={{ height: "230px", width: "100%" }}
+                />
+              </div>
               <div style={{ backgroundColor: "#f9f2eb" }}>
                 <div className="row align-items-center px-3 mt-2 mb-2">
                   <div className="col-6">
-                    <h5 className="text-center card-title ">Gulfcraft 2</h5>
+                    <h5 className="text-center card-title ">Meridian</h5>
                   </div>
 
                   <div className="col-6 d-flex justify-content-end gap-2">
-                    <button className="booking_btn">
+                    {/* <button className="booking_btn">
                       <WhatsAppIcon />{" "}
+                    </button> */}
+                    <a
+                      href="https://wa.me/+971525644209"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="booking_btn"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <button
+                      className="booking_btn"
+                      onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }
+                    >
+                      Book Now
                     </button>
-                    <button className="booking_btn">Book Now</button>
                   </div>
                 </div>
                 <hr className="p-0 m-0" />
                 <div className="row m-0 p-0">
                   <div className="col-4 p-0 m-0">
                     <p className="p-0 m-0 content_name">Length</p>
-                    <p className="fw-bold p-0 m-0">55 FT</p>
+                    <p className="fw-bold p-0 m-0">45 FT</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
@@ -210,14 +377,14 @@ const GridPage = () => {
                     }}
                   >
                     <p className="p-0 m-0 content_name">Capacity</p>
-                    <p className="fw-bold p-0 m-0">55 PAX</p>
+                    <p className="fw-bold p-0 m-0">15 PAX</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
                     style={{ borderLeft: "1px solid #ccc" }}
                   >
                     <p className="p-0 m-0 content_name">Price</p>
-                    <p className="fw-bold p-0 m-0">55 AED</p>
+                    <p className="fw-bold p-0 m-0">450 per hour</p>
                   </div>
                 </div>
               </div>
@@ -225,29 +392,55 @@ const GridPage = () => {
           </div>
           <div className="col" data-aos="zoom-in-up">
             <div className="card p-0">
-              <img
-                src={Azimut_1}
-                alt=""
-                style={{ height: "250px", width: "100%", objectFit: "" }}
-              />
+              <div
+                className="p-3"
+                onClick={() => setSelectedGallery("cranchi")}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={CranchiImages?.[0]}
+                  alt=""
+                  style={{ height: "230px", width: "100%" }}
+                />
+              </div>
               <div style={{ backgroundColor: "#f9f2eb" }}>
                 <div className="row align-items-center px-3 mt-2 mb-2">
                   <div className="col-6">
-                    <h5 className="text-center card-title ">Gulfcraft 2</h5>
+                    <h5 className="text-center card-title ">Cranchi</h5>
                   </div>
 
                   <div className="col-6 d-flex justify-content-end gap-2">
-                    <button className="booking_btn">
+                    {/* <button className="booking_btn">
                       <WhatsAppIcon />{" "}
+                    </button> */}
+                    <a
+                      href="https://wa.me/+971525644209"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="booking_btn"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <button
+                      className="booking_btn"
+                      onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }
+                    >
+                      Book Now
                     </button>
-                    <button className="booking_btn">Book Now</button>
                   </div>
                 </div>
                 <hr className="p-0 m-0" />
                 <div className="row m-0 p-0">
                   <div className="col-4 p-0 m-0">
                     <p className="p-0 m-0 content_name">Length</p>
-                    <p className="fw-bold p-0 m-0">55 FT</p>
+                    <p className="fw-bold p-0 m-0">44 FT</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
@@ -257,14 +450,14 @@ const GridPage = () => {
                     }}
                   >
                     <p className="p-0 m-0 content_name">Capacity</p>
-                    <p className="fw-bold p-0 m-0">55 PAX</p>
+                    <p className="fw-bold p-0 m-0">12 PAX</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
                     style={{ borderLeft: "1px solid #ccc" }}
                   >
                     <p className="p-0 m-0 content_name">Price</p>
-                    <p className="fw-bold p-0 m-0">55 AED</p>
+                    <p className="fw-bold p-0 m-0">450 Per hour</p>
                   </div>
                 </div>
               </div>
@@ -272,29 +465,55 @@ const GridPage = () => {
           </div>
           <div className="col" data-aos="zoom-in-left">
             <div className="card p-0">
-              <img
-                src={Azimut_1}
-                alt=""
-                style={{ height: "250px", width: "100%", objectFit: "" }}
-              />
+              <div
+                className="p-3"
+                onClick={() => setSelectedGallery("riviera")}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={RivieraImages?.[0]}
+                  alt=""
+                  style={{ height: "230px", width: "100%" }}
+                />
+              </div>
               <div style={{ backgroundColor: "#f9f2eb" }}>
                 <div className="row align-items-center px-3 mt-2 mb-2">
                   <div className="col-6">
-                    <h5 className="text-center card-title ">Gulfcraft 2</h5>
+                    <h5 className="text-center card-title ">Riviera</h5>
                   </div>
 
                   <div className="col-6 d-flex justify-content-end gap-2">
-                    <button className="booking_btn">
+                    {/* <button className="booking_btn">
                       <WhatsAppIcon />{" "}
+                    </button> */}
+                    <a
+                      href="https://wa.me/+971525644209"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="booking_btn"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <button
+                      className="booking_btn"
+                      onClick={() =>
+                        window.open("https://wa.me/971525644209", "_blank")
+                      }
+                    >
+                      Book Now
                     </button>
-                    <button className="booking_btn">Book Now</button>
                   </div>
                 </div>
                 <hr className="p-0 m-0" />
                 <div className="row m-0 p-0">
                   <div className="col-4 p-0 m-0">
                     <p className="p-0 m-0 content_name">Length</p>
-                    <p className="fw-bold p-0 m-0">55 FT</p>
+                    <p className="fw-bold p-0 m-0">48 FT</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
@@ -304,14 +523,14 @@ const GridPage = () => {
                     }}
                   >
                     <p className="p-0 m-0 content_name">Capacity</p>
-                    <p className="fw-bold p-0 m-0">55 PAX</p>
+                    <p className="fw-bold p-0 m-0">15 PAX</p>
                   </div>
                   <div
                     className="col-4 p-0 m-0"
                     style={{ borderLeft: "1px solid #ccc" }}
                   >
                     <p className="p-0 m-0 content_name">Price</p>
-                    <p className="fw-bold p-0 m-0">55 AED</p>
+                    <p className="fw-bold p-0 m-0">450 Per Hour</p>
                   </div>
                 </div>
               </div>
@@ -356,7 +575,6 @@ const GridPage = () => {
             </p>
           </div>
 
-          {/* Right Column - Button */}
           <div className="col-12 col-md-6 d-flex justify-content-center align-items-center mt-3 mt-md-0">
             <button
               style={{
@@ -373,6 +591,9 @@ const GridPage = () => {
                 alignItems: "center",
                 gap: "8px",
               }}
+              onClick={() =>
+                window.open("https://wa.me/971525644209", "_blank")
+              }
             >
               <WhatsAppIcon style={{ fontSize: "20px" }} /> WhatsApp
             </button>
@@ -381,6 +602,31 @@ const GridPage = () => {
       </div>
 
       <PartyPages />
+
+      <Dialog
+        header={header}
+        visible={isOpen}
+        style={{ width: "70vw" }}
+        onHide={() => setSelectedGallery(null)}
+      >
+        <Carousel
+          showThumbs={false}
+          infiniteLoop
+          useKeyboardArrows
+          autoPlay
+          swipeable
+        >
+          {images.map((img, i) => (
+            <div key={i}>
+              <img
+                src={img}
+                alt={`Slide ${i + 1}`}
+                style={{ width: "100%", height: "70vh", objectFit: "cover" }}
+              />
+            </div>
+          ))}
+        </Carousel>
+      </Dialog>
     </>
   );
 };
